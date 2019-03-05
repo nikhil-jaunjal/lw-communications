@@ -1,0 +1,201 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Lw-Communications",
+    "description": "Communications By LeaseWallet"
+  },
+  "tags": [
+    {
+      "name": "API",
+      "description": "API for Controllers/routes in the system. write your api's in 'paths' & entities in 'defination'"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/users/signup": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Register in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/UserEntity"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "user registration completed",
+            "parameters": [
+              {
+                "name": "user",
+                "in": "body",
+                "description": "user signup ",
+                "schema": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Login in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/UserLogin"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "user Login",
+            "parameters": [
+              {
+                "name": "user",
+                "in": "body",
+                "description": "user Login",
+                "schema": {
+                  "$ref": "#/definitions/UserLogin"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all users in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "delete": {
+        "summary": "Delete user with given ID",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UserLogin": {
+      "required": [
+        "email",
+        "password"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "UserEntity": {
+      "required": [
+        "email",
+        "_id",
+        "password",
+        "type",
+        "country"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    },
+    "ProductEntity": {
+      "required": [
+        "_id",
+        "name",
+        "price",
+        "productImage"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "price": {
+          "type": "number",
+          "uniqueItems": true
+        },
+        "productImage": {
+          "type": "string",
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}
